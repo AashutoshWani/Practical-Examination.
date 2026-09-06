@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - CampusConnect 2026</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>CampusConnect 2026</h1>
+    <p>Student Event Registration Portal</p>
+</header>
+
+<div class="container">
+    <h2>Student Login</h2>
+
+    <div id="message" class="message hidden"></div>
+    <p id="welcomeText" class="hidden" style="text-align:center; margin-top:10px;"></p>
+
+    <form id="loginForm" method="POST" action="backend/login.php">
+        <label for="identifier">Email / Student ID</label>
+        <input type="text" id="identifier" name="identifier" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">LOGIN</button>
+    </form>
+
+    <div class="link-row">
+        Not registered yet? <a href="register.html">Register here</a> &nbsp;|&nbsp; <a href="index.html">Home</a>
+    </div>
+</div>
+
+<footer>&copy; 2026 CampusConnect. Deployed on LAMP/LEMP.</footer>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+    const box = document.getElementById("message");
+    const welcomeText = document.getElementById("welcomeText");
+    const form = document.getElementById("loginForm");
+
+    if (status === "success") {
+        box.textContent = "Welcome to CampusConnect!";
+        box.classList.remove("hidden", "error");
+        box.classList.add("success");
+
+        const name = params.get("name");
+        if (name) {
+            welcomeText.textContent = "Logged in as " + name + ".";
+            welcomeText.classList.remove("hidden");
+        }
+        form.classList.add("hidden");
+    } else if (status === "error") {
+        box.textContent = "Invalid username or password.";
+        box.classList.remove("hidden", "success");
+        box.classList.add("error");
+    }
+</script>
+</body>
+</html>

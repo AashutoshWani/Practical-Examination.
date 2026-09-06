@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register - CampusConnect 2026</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>CampusConnect 2026</h1>
+    <p>Student Event Registration Portal</p>
+</header>
+
+<div class="container">
+    <h2>Student Registration</h2>
+    <p style="text-align:center; color:#777; font-size:0.85rem; margin-bottom:10px;">
+        Your Student ID is generated automatically after you register.
+    </p>
+
+    <div id="message" class="message hidden"></div>
+
+    <form method="POST" action="backend/register.php">
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" maxlength="20" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" maxlength="20" required>
+
+        <label for="college_name">College Name</label>
+        <input type="text" id="college_name" name="college_name" maxlength="25" required>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" maxlength="20" required>
+
+        <label for="event">Event</label>
+        <input type="text" id="event" name="event" maxlength="20" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="link-row">
+        Already registered? <a href="login.html">Login here</a> &nbsp;|&nbsp; <a href="index.html">Home</a>
+    </div>
+</div>
+
+<footer>&copy; 2026 CampusConnect. Deployed on LAMP/LEMP.</footer>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+    const box = document.getElementById("message");
+
+    if (status === "success") {
+        box.textContent = params.get("msg") || "Registration successful! You can now log in.";
+        box.classList.remove("hidden", "error");
+        box.classList.add("success");
+    } else if (status === "error") {
+        box.textContent = params.get("msg") || "Registration failed. Please try again.";
+        box.classList.remove("hidden", "success");
+        box.classList.add("error");
+    }
+</script>
+</body>
+</html>
