@@ -139,10 +139,10 @@ File layout deployed:
 
 `backend/config.php` holds the DB credentials:
 ```php
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "aashu";
-$db_name = "studentdb";
+$db_host = "";
+$db_user = "";
+$db_pass = "";
+$db_name = "";
 ```
 
 📸 Screenshot: `ls` of deployed folder structure
